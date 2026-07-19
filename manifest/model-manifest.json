@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "release": "v0.1.0",
+  "generatedAt": "2026-07-19T18:58:00Z",
+  "languages": [
+    {
+      "tag": "en",
+      "displayName": "English",
+      "nativeName": "English",
+      "learningFrom": []
+    },
+    {
+      "tag": "es",
+      "displayName": "Spanish",
+      "nativeName": "Español",
+      "learningFrom": ["en"]
+    },
+    {
+      "tag": "fr",
+      "displayName": "French",
+      "nativeName": "Français",
+      "learningFrom": ["en"]
+    }
+  ],
+  "artifacts": []
+}
