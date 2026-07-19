@@ -1,0 +1,83 @@
+name: Build whisper.cpp runtimes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: whisper-runtime-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-26
+            artifact: whisper-cli-macos-aarch64
+            binary: whisper/build/bin/whisper-cli
+            cmake_args: -DGGML_METAL=ON -DGGML_NATIVE=OFF
+          - os: macos-26-intel
+            artifact: whisper-cli-macos-x86_64
+            binary: whisper/build/bin/whisper-cli
+            cmake_args: -DGGML_METAL=ON -DGGML_NATIVE=OFF
+          - os: windows-2025
+            artifact: whisper-cli-windows-x86_64.exe
+            binary: whisper/build/bin/Release/whisper-cli.exe
+            cmake_args: -DGGML_NATIVE=OFF -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          repository: ggml-org/whisper.cpp
+          ref: f049fff95a089aa9969deb009cdd4892b3e74916
+          path: whisper
+
+      - name: Configure static runtime
+        shell: bash
+        run: |
+          cmake -S whisper -B whisper/build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF \
+            -DWHISPER_BUILD_TESTS=OFF \
+            -DWHISPER_BUILD_SERVER=OFF \
+            ${{ matrix.cmake_args }}
+
+      - name: Build whisper-cli
+        shell: bash
+        run: cmake --build whisper/build --config Release --target whisper-cli --parallel 3
+
+      - name: Stage runtime
+        shell: bash
+        run: |
+          mkdir runtime
+          cp "${{ matrix.binary }}" "runtime/${{ matrix.artifact }}"
+
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: ${{ matrix.artifact }}
+          path: runtime/${{ matrix.artifact }}
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          path: runtime
+          merge-multiple: true
+
+      - name: Publish immutable runtime build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sha256sum runtime/*
+          gh release create whisper-runtime-v1.9.1 \
+            runtime/* \
+            --repo "${{ github.repository }}" \
+            --title "whisper.cpp runtime v1.9.1" \
+            --notes "Static whisper-cli builds from ggml-org/whisper.cpp commit f049fff95a089aa9969deb009cdd4892b3e74916."
