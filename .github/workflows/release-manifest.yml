@@ -6,7 +6,7 @@ on:
       tag:
         description: Release tag matching manifest.release
         required: true
-        default: v0.3.0
+        default: v0.4.0
 
 permissions:
   contents: write
@@ -53,4 +53,4 @@ jobs:
             THIRD_PARTY_NOTICES.md \
             release-assets/* \
             --title "Speakfree model catalog $RELEASE_TAG" \
-            --notes "Signed Speakfree whisper.cpp runtimes and multilingual speech-to-text model for English, Spanish, and German."
+            --notes "Signed Speakfree catalog with local speech recognition and Qwen tutor generation for English speakers practising Spanish or German."

@@ -23,6 +23,24 @@
       "sourceUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q5_1.bin",
       "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
       "sizeBytes": 190085487
+    },
+    {
+      "fileName": "llama-server-macos-aarch64",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/llama-runtime-b10068/llama-server-macos-aarch64",
+      "sha256": "9c2f21c3d9089fee6e9f81d299e0b615209d799c02e689a61afe1a45897a1f4e",
+      "sizeBytes": 15703472
+    },
+    {
+      "fileName": "llama-server-macos-x86_64",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/llama-runtime-b10068/llama-server-macos-x86_64",
+      "sha256": "b28cd204d62d8a33b636bd07a8786f640d7e1faa7a39ecf87dec359f1303059a",
+      "sizeBytes": 16965472
+    },
+    {
+      "fileName": "llama-server-windows-x86_64.exe",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/llama-runtime-b10068/llama-server-windows-x86_64.exe",
+      "sha256": "f81355352234987b90bac6ab232c92ad2467ce03a073d9a4f5012a92bc3a847d",
+      "sizeBytes": 11750400
     }
   ]
 }

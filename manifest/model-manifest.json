@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "release": "v0.3.0",
-  "generatedAt": "2026-07-19T19:25:00Z",
+  "release": "v0.4.0",
+  "generatedAt": "2026-07-19T20:20:00Z",
   "languages": [
     {
       "tag": "en",
@@ -32,7 +32,7 @@
         {
           "operatingSystem": "macos",
           "architecture": "aarch64",
-          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-macos-aarch64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/whisper-cli-macos-aarch64",
           "sha256": "9a5b2fbb365137ae101db2625a68ba3bc200adb99f944f9d4788c7a319613538",
           "sizeBytes": 3204328,
           "fileName": "whisper-cli",
@@ -42,7 +42,7 @@
         {
           "operatingSystem": "macos",
           "architecture": "x86_64",
-          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-macos-x86_64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/whisper-cli-macos-x86_64",
           "sha256": "564101163960184ebb95eb1694074e5f10736654ae4d55e89f7515d64468a6bf",
           "sizeBytes": 3693248,
           "fileName": "whisper-cli",
@@ -52,7 +52,7 @@
         {
           "operatingSystem": "windows",
           "architecture": "x86_64",
-          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-windows-x86_64.exe",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/whisper-cli-windows-x86_64.exe",
           "sha256": "b46b379be7f22ca7e58b5dcb30147bfbe196cf56980575acc9dad264368c2608",
           "sizeBytes": 1908224,
           "fileName": "whisper-cli.exe",
@@ -70,10 +70,66 @@
         {
           "operatingSystem": null,
           "architecture": null,
-          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/ggml-small-q5_1.bin",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/ggml-small-q5_1.bin",
           "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
           "sizeBytes": 190085487,
           "fileName": "ggml-small-q5_1.bin",
+          "executable": false,
+          "launchArguments": null
+        }
+      ]
+    },
+    {
+      "id": "llama-cpp-runtime",
+      "kind": "llm",
+      "version": "b10068",
+      "languageTags": ["en", "es", "de"],
+      "variants": [
+        {
+          "operatingSystem": "macos",
+          "architecture": "aarch64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/llama-server-macos-aarch64",
+          "sha256": "9c2f21c3d9089fee6e9f81d299e0b615209d799c02e689a61afe1a45897a1f4e",
+          "sizeBytes": 15703472,
+          "fileName": "llama-server",
+          "executable": true,
+          "launchArguments": null
+        },
+        {
+          "operatingSystem": "macos",
+          "architecture": "x86_64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/llama-server-macos-x86_64",
+          "sha256": "b28cd204d62d8a33b636bd07a8786f640d7e1faa7a39ecf87dec359f1303059a",
+          "sizeBytes": 16965472,
+          "fileName": "llama-server",
+          "executable": true,
+          "launchArguments": null
+        },
+        {
+          "operatingSystem": "windows",
+          "architecture": "x86_64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.4.0/llama-server-windows-x86_64.exe",
+          "sha256": "f81355352234987b90bac6ab232c92ad2467ce03a073d9a4f5012a92bc3a847d",
+          "sizeBytes": 11750400,
+          "fileName": "llama-server.exe",
+          "executable": true,
+          "launchArguments": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b-q4-k-m",
+      "kind": "llm",
+      "version": "bc640142c66e1fdd12af0bd68f40445458f3869b",
+      "languageTags": ["en", "es", "de"],
+      "variants": [
+        {
+          "operatingSystem": null,
+          "architecture": null,
+          "url": "https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/bc640142c66e1fdd12af0bd68f40445458f3869b/Qwen3-4B-Q4_K_M.gguf",
+          "sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5",
+          "sizeBytes": 2497280256,
+          "fileName": "Qwen3-4B-Q4_K_M.gguf",
           "executable": false,
           "launchArguments": null
         }
