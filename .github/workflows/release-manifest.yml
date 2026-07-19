@@ -6,7 +6,7 @@ on:
       tag:
         description: Release tag matching manifest.release
         required: true
-        default: v0.1.0
+        default: v0.2.0
 
 permissions:
   contents: write
@@ -33,6 +33,9 @@ jobs:
         run: |
           python -c 'import json, os, pathlib; manifest=json.loads(pathlib.Path("manifest/model-manifest.json").read_text()); assert manifest["release"] == os.environ["RELEASE_TAG"], "manifest.release must match the requested tag"'
 
+      - name: Fetch and verify release artifacts
+        run: python scripts/fetch_release_assets.py
+
       - name: Sign manifest
         env:
           SIGNING_KEY: ${{ secrets.SPEAKFREE_MANIFEST_SIGNING_KEY }}
@@ -47,5 +50,7 @@ jobs:
           gh release create "$RELEASE_TAG" \
             manifest/model-manifest.json \
             model-manifest.json.sig \
+            THIRD_PARTY_NOTICES.md \
+            release-assets/* \
             --title "Speakfree model catalog $RELEASE_TAG" \
-            --notes "Signed Speakfree model catalog. This initial release contains no model artifacts."
+            --notes "Signed Speakfree multilingual speech-to-text catalog for English, Spanish, and German."

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "release": "v0.1.0",
-  "generatedAt": "2026-07-19T18:58:00Z",
+  "release": "v0.2.0",
+  "generatedAt": "2026-07-19T19:15:00Z",
   "languages": [
     {
       "tag": "en",
@@ -16,11 +16,30 @@
       "learningFrom": ["en"]
     },
     {
-      "tag": "fr",
-      "displayName": "French",
-      "nativeName": "Français",
+      "tag": "de",
+      "displayName": "German",
+      "nativeName": "Deutsch",
       "learningFrom": ["en"]
     }
   ],
-  "artifacts": []
+  "artifacts": [
+    {
+      "id": "whisper-small-q5-1-multilingual",
+      "kind": "stt",
+      "version": "small-q5_1",
+      "languageTags": ["en", "es", "de"],
+      "variants": [
+        {
+          "operatingSystem": null,
+          "architecture": null,
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.2.0/ggml-small-q5_1.bin",
+          "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
+          "sizeBytes": 190085487,
+          "fileName": "ggml-small-q5_1.bin",
+          "executable": false,
+          "launchArguments": null
+        }
+      ]
+    }
+  ]
 }
