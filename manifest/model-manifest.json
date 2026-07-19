@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "release": "v0.2.0",
-  "generatedAt": "2026-07-19T19:15:00Z",
+  "release": "v0.3.0",
+  "generatedAt": "2026-07-19T19:25:00Z",
   "languages": [
     {
       "tag": "en",
@@ -24,6 +24,44 @@
   ],
   "artifacts": [
     {
+      "id": "whisper-cpp-runtime",
+      "kind": "stt",
+      "version": "1.9.1",
+      "languageTags": ["en", "es", "de"],
+      "variants": [
+        {
+          "operatingSystem": "macos",
+          "architecture": "aarch64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-macos-aarch64",
+          "sha256": "9a5b2fbb365137ae101db2625a68ba3bc200adb99f944f9d4788c7a319613538",
+          "sizeBytes": 3204328,
+          "fileName": "whisper-cli",
+          "executable": true,
+          "launchArguments": null
+        },
+        {
+          "operatingSystem": "macos",
+          "architecture": "x86_64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-macos-x86_64",
+          "sha256": "564101163960184ebb95eb1694074e5f10736654ae4d55e89f7515d64468a6bf",
+          "sizeBytes": 3693248,
+          "fileName": "whisper-cli",
+          "executable": true,
+          "launchArguments": null
+        },
+        {
+          "operatingSystem": "windows",
+          "architecture": "x86_64",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/whisper-cli-windows-x86_64.exe",
+          "sha256": "b46b379be7f22ca7e58b5dcb30147bfbe196cf56980575acc9dad264368c2608",
+          "sizeBytes": 1908224,
+          "fileName": "whisper-cli.exe",
+          "executable": true,
+          "launchArguments": null
+        }
+      ]
+    },
+    {
       "id": "whisper-small-q5-1-multilingual",
       "kind": "stt",
       "version": "small-q5_1",
@@ -32,7 +70,7 @@
         {
           "operatingSystem": null,
           "architecture": null,
-          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.2.0/ggml-small-q5_1.bin",
+          "url": "https://github.com/rockspetre/speakfree-models/releases/download/v0.3.0/ggml-small-q5_1.bin",
           "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
           "sizeBytes": 190085487,
           "fileName": "ggml-small-q5_1.bin",

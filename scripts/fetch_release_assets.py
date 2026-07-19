@@ -6,7 +6,7 @@ import pathlib
 import urllib.parse
 import urllib.request
 
-ALLOWED_SOURCE_HOSTS = {"huggingface.co"}
+ALLOWED_SOURCE_HOSTS = {"github.com", "huggingface.co"}
 CHUNK_SIZE = 1024 * 1024
 
 

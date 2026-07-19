@@ -1,6 +1,24 @@
 {
   "artifacts": [
     {
+      "fileName": "whisper-cli-macos-aarch64",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/whisper-runtime-v1.9.1/whisper-cli-macos-aarch64",
+      "sha256": "9a5b2fbb365137ae101db2625a68ba3bc200adb99f944f9d4788c7a319613538",
+      "sizeBytes": 3204328
+    },
+    {
+      "fileName": "whisper-cli-macos-x86_64",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/whisper-runtime-v1.9.1/whisper-cli-macos-x86_64",
+      "sha256": "564101163960184ebb95eb1694074e5f10736654ae4d55e89f7515d64468a6bf",
+      "sizeBytes": 3693248
+    },
+    {
+      "fileName": "whisper-cli-windows-x86_64.exe",
+      "sourceUrl": "https://github.com/rockspetre/speakfree-models/releases/download/whisper-runtime-v1.9.1/whisper-cli-windows-x86_64.exe",
+      "sha256": "b46b379be7f22ca7e58b5dcb30147bfbe196cf56980575acc9dad264368c2608",
+      "sizeBytes": 1908224
+    },
+    {
       "fileName": "ggml-small-q5_1.bin",
       "sourceUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q5_1.bin",
       "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
