@@ -1,0 +1,85 @@
+name: Build llama.cpp runtimes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: llama-runtime-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-26
+            artifact: llama-server-macos-aarch64
+            binary: llama.cpp/build/bin/llama-server
+            cmake_args: -DGGML_METAL=ON -DGGML_NATIVE=OFF
+          - os: macos-26-intel
+            artifact: llama-server-macos-x86_64
+            binary: llama.cpp/build/bin/llama-server
+            cmake_args: -DGGML_METAL=ON -DGGML_NATIVE=OFF
+          - os: windows-2025
+            artifact: llama-server-windows-x86_64.exe
+            binary: llama.cpp/build/bin/Release/llama-server.exe
+            cmake_args: -DGGML_NATIVE=OFF -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          repository: ggml-org/llama.cpp
+          ref: 571d0d540df04f25298d0e159e520d9fc62ed121
+          path: llama.cpp
+
+      - name: Configure static runtime
+        shell: bash
+        run: |
+          cmake -S llama.cpp -B llama.cpp/build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=ON \
+            -DLLAMA_BUILD_SERVER=ON \
+            ${{ matrix.cmake_args }}
+
+      - name: Build llama-server
+        shell: bash
+        run: cmake --build llama.cpp/build --config Release --target llama-server --parallel 3
+
+      - name: Stage runtime
+        shell: bash
+        run: |
+          mkdir runtime
+          cp "${{ matrix.binary }}" "runtime/${{ matrix.artifact }}"
+
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: ${{ matrix.artifact }}
+          path: runtime/${{ matrix.artifact }}
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          path: runtime
+          merge-multiple: true
+
+      - name: Publish immutable runtime build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sha256sum runtime/*
+          gh release create llama-runtime-b10068 \
+            runtime/* \
+            --repo "${{ github.repository }}" \
+            --title "llama.cpp runtime b10068" \
+            --notes "Static llama-server builds from ggml-org/llama.cpp commit 571d0d540df04f25298d0e159e520d9fc62ed121."
